@@ -1,0 +1,57 @@
+[
+  {
+    "title": "Mate",
+    "price": 1300,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_815311-MLA40780211512_022020-O.webp",
+    "id": 1
+  },
+  {
+    "title": "termo",
+    "price": "3000",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_724447-MLA43695344068_102020-O.webp",
+    "id": 2
+  },
+  {
+    "title": "Termo",
+    "price": 3000,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_934089-MLA42441068436_072020-O.webp",
+    "id": 3
+  },
+  {
+    "title": "Matera",
+    "price": "1200",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_732063-MLA42345659528_062020-O.webp",
+    "id": 4
+  },
+  {
+    "title": "Azucarera",
+    "price": "250",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_972360-MLA43566037479_092020-O.webp",
+    "id": 5
+  },
+  5,
+  {
+    "title": "Empanada caliente",
+    "price": 380,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_653058-MLA42993843759_082020-O.webp",
+    "id": 6
+  },
+  {
+    "title": "papita",
+    "price": "120",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_830727-MLA47091618213_082021-O.webp",
+    "id": 7
+  },
+  {
+    "title": "Agua mineral",
+    "price": "60",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_843913-MLA43773836976_102020-O.webp",
+    "id": 8
+  },
+  {
+    "title": "Pistola dardos",
+    "price": 2380,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "id": 9
+  }
+]
