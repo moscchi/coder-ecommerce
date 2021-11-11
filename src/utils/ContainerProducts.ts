@@ -1,14 +1,19 @@
 import fs from "fs";
 
-interface Container {
+interface ContainerProducts {
     ruta: string;
   }
-  console.log(process.env.DB_DIR);
   
   const contenedor = {
     ruta: `${process.env.DB_DIR}`
 }
-  const getById = async (contenedor: Container, id: number) => {
+
+  const getAll = async (contenedor: ContainerProducts) => {
+    let objs = await fs.promises.readFile(contenedor.ruta, "utf-8");
+    let objsParsed = JSON.parse(objs);
+    return objsParsed;
+  }
+  const getById = async (contenedor: ContainerProducts, id: number) => {
     try {
       let objs = await fs.promises.readFile(contenedor.ruta, "utf-8");
       let objsParsed = JSON.parse(objs);
@@ -20,7 +25,7 @@ interface Container {
     }
   }
 
-  const save = async (contenedor: Container, objes: object) => {
+  const save = async (contenedor: ContainerProducts, objes: object) => {
     let objs = await fs.promises.readFile(contenedor.ruta, "utf-8");
     let objsParsed = JSON.parse(objs);
     let newId;
@@ -39,39 +44,18 @@ interface Container {
     }
   }
 
-  const deleteById = async (contenedor: Container, id: number) => {
+  const deleteById = async (contenedor: ContainerProducts, id: number) => {
     try {
       let objs = await fs.promises.readFile(contenedor.ruta, "utf-8");
       let objsParsed = JSON.parse(objs);
-      let byId: any;
-      for (let i = 0; i < objsParsed.length; i++) {
-        if (id === 1) {
-          objsParsed.splice(0, 1);
-          byId = objsParsed;
-          break;
-        }
-        if (objsParsed[i].id == id) {
-          objsParsed.splice(i, 1, id - 1);
-          console.log('Aca en el delete: ',objsParsed);
-          
-          byId = objsParsed;
-          break;
-        }
-        if (!byId) {
-          byId = "El id no existe";
-        }
-      }
-      if (typeof byId === "string") {
-        return byId;
-      } else {
-        await fs.promises.writeFile(contenedor.ruta, JSON.stringify(byId));
-        return byId;
-      }
+      objsParsed = objsParsed.filter((i: any) => i.id !== id);
+      await fs.promises.writeFile(contenedor.ruta, JSON.stringify(objsParsed));
+      return objsParsed;
     } catch (err) {
       console.log(err);
     }
   }
-  const update = async (contenedor: Container, obj: {
+  const update = async (contenedor: ContainerProducts, obj: {
     title: string,
     price: number,
     thumbnail: string,
@@ -83,9 +67,7 @@ interface Container {
     let objsParsed = JSON.parse(objs);
     //Aca hay que parsearlo poruqe sino te queda como string y te rompe el codigo del getById
     objsParsed.push(obj);
-/*     console.log(objsParsed); */
     objsParsed.sort((a: any, b: any)=> {return a.id - b.id}); 
-    console.log(objsParsed);
     try {
       await fs.promises.writeFile(contenedor.ruta, JSON.stringify(objsParsed, null, 2));
       return objsParsed;
@@ -96,4 +78,4 @@ interface Container {
 
 
 
-export { getById, save, deleteById, update, contenedor };
+export { getById, save, deleteById, update, getAll, contenedor };

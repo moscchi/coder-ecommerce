@@ -29,7 +29,6 @@
     "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_972360-MLA43566037479_092020-O.webp",
     "id": 5
   },
-  5,
   {
     "title": "Empanada caliente",
     "price": 380,

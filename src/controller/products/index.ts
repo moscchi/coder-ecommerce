@@ -4,7 +4,16 @@ import {getProductByIdService} from '../../services/products/getProductByIdServi
 import {addProductService} from "../../services/products/addProductService";
 import {updateProductService} from "../../services/products/updateProductService";
 import {delByIdService} from "../../services/products/delByIdService";
+import { getAllProductsService } from '../../services/products/getAllProductsService';
 
+const getAllProducts = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+  try {
+    const products = await getAllProductsService();
+    res.json(products);
+  } catch (error){
+    next(error);
+  }
+}
 const getProductById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   try {
     const product = await getProductByIdService(req);
@@ -46,4 +55,5 @@ export {
   addProduct,
   updateProduct,
   deleteProduct,
+  getAllProducts
 };
