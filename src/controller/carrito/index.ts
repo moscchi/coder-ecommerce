@@ -3,6 +3,7 @@ import { addCarritoService } from '../../services/carrito/addCarritoService';
 import { delCarritoByIdService } from '../../services/carrito/delCarritoByIdService';
 import { getCarritoByIdService } from '../../services/carrito/getCarritoService';
 import { addProductByIdService } from '../../services/carrito/addProductByIdService'
+import { removeProductService } from '../../services/carrito/removeProductService';
 const addCarrito = async (req: Request, res: Response, next: NextFunction) => {
     try{
         const newCarrito = await addCarritoService();
@@ -36,7 +37,14 @@ const addProductCarrito = async (req: Request, res: Response, next: NextFunction
         next(e);
     }
 };
-const delProdCarrito = () => {};
+const delProdCarrito = async (req: Request, res: Response, next: NextFunction) => {
+    try{
+        const removeProdForCarrito = await removeProductService(req);
+        res.json(removeProdForCarrito);
+    } catch(e){
+        next(e);
+    }
+};
 
 export {
     addCarrito,

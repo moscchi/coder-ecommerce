@@ -26,7 +26,7 @@ routes.delete("/productos/:id", deleteProduct);
 /* Rutas Carrito */
 routes.post("/carrito", addCarrito);
 routes.delete("/carrito/:id", delCarrito);
-routes.get("/carrito/:id:/productos", listCarrito);
+routes.get("/carrito/:id/productos", listCarrito);
 routes.post("/carrito/:id/productos", addProductCarrito);
 routes.delete("/carrito/:id/productos/:id_prod", delProdCarrito);
 

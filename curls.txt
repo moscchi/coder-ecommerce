@@ -1,0 +1,24 @@
+Carritos:
+**********************************************
+
+curl --location --request POST 'http://localhost:8080/api/carrito' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title": "Pistolita",
+    "price": 2380,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "admin": 1
+}'
+
+**********************************************
+
+curl --location --request DELETE 'http://localhost:8080/api/carrito/2' \
+--data-raw ''
+
+**********************************************
+
+curl --location --request GET 'http://localhost:8080/api/carrito/4/productos' \
+--data-raw ''
+
+**********************************************
+

@@ -9,25 +9,27 @@ const contenedorCarritos = {
 }
 
 const addCarrito = async ( contenedorCarritos: ContainerCarrito ) => {
-    let carritos = JSON.parse(await fs.promises.readFile(contenedorCarritos.ruta, "utf-8"));
+    const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
+    const carritosParsed = JSON.parse(carritos)
     let newId;
-    !carritos.length ? newId = 1: newId=carritos[carritos.length - 1].id +1;
+    !carritosParsed.length ? newId = 1: newId=carritosParsed[carritosParsed.length - 1].id +1;
     const obj = { list: [], id: newId };
-    carritos.push(obj);
+    carritosParsed.push(obj);
     try {
-        await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritos, null, 2));
+        await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritosParsed, null, 2));
         return obj;
     } catch (err) {
         throw new Error(`Error al intentar agregar carrito: ${err}`)
     }
 }
 
-const delCarritoById = async (contenedorCarritos: ContainerCarrito, id: number) => {
+const delCarritoById = async (contenedorCarritos: ContainerCarrito, id: string) => {
     try {
-        let carritos = JSON.parse(await fs.promises.readFile(contenedorCarritos.ruta, "utf-8"));
-        carritos.filter((i:any) => i.id !== id);
-        await fs.promises.writeFile(contenedorCarritos.ruta, "utf-8");
-        return carritos;
+        const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
+        const carritosParsed = JSON.parse(carritos)
+        const carritosFilter = carritosParsed.filter((i:any) => i.id != id);
+        await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritosFilter, null, 2));
+        return carritosParsed;
     } catch (e) {
         console.log(e);
     }
@@ -35,8 +37,9 @@ const delCarritoById = async (contenedorCarritos: ContainerCarrito, id: number) 
 
 const getById = async (contenedorCarritos: ContainerCarrito, id: number) => {
     try {
-        let carritos = JSON.parse(await fs.promises.readFile(contenedorCarritos.ruta, "utf-8")); 
-        let carr = carritos.filter((obj: any) => obj.id === id);
+        const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
+        const carritosParsed = JSON.parse(carritos)
+        let carr = carritosParsed.filter((obj: any) => obj.id === id);
         if(!carr.length) return { error: "Carrito no encontrado"};
         return carr;
     } catch (err){
@@ -45,13 +48,16 @@ const getById = async (contenedorCarritos: ContainerCarrito, id: number) => {
     }
 }
 
-const addProduct = async (contenedorCarritos: ContainerCarrito, id: number, producto: any) => {
-    let carritos = JSON.parse(await fs.promises.readFile(contenedorCarritos.ruta, "utf-8")); 
-    let carr = carritos.filter((obj: any) => obj.id === id);
+const addProduct = async (contenedorCarritos: ContainerCarrito, id: string, producto: any) => {
+    const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
+    const carritosParsed = JSON.parse(carritos)
+    const carr = carritosParsed.filter((obj: any) => obj.id === id);
+    const list = [];
+    /* revisar este metodo */
     carr.list.push(producto);
     await delCarritoById(contenedorCarritos, id);
-    carritos.push(carr);
-    carritos.sort((a: any, b: any) => { return a.id - b.id});
+    carritosParsed.push(carr);
+    carritosParsed.sort((a: any, b: any) => { return a.id - b.id});
     try {
         await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritos, null, 2));
         return carritos;
@@ -62,5 +68,12 @@ const addProduct = async (contenedorCarritos: ContainerCarrito, id: number, prod
 }
 
 //Falta agregar el ultimo route
-
-export { addCarrito, delCarritoById, getById, addProduct, contenedorCarritos };
+const  removeProduct = async (contenedorCarritos:ContainerCarrito, id: number, id_prod: number) => {
+    const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
+    const carritosParsed = JSON.parse(carritos)
+    const carr = carritosParsed.filter((obj: any) => obj.id === id);
+    const carrProducto = carr.filter((obj: any) => obj.id !== id_prod);
+    await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carrProducto, null, 2));
+    return carrProducto;
+}
+export { addCarrito, delCarritoById, getById, addProduct, removeProduct, contenedorCarritos };

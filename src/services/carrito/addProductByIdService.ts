@@ -12,7 +12,7 @@ const addProductByIdService = async (req: Request) => {
     try {
         //@ts-ignore
         const product = await  getProductByIdService(mockReq);
-        const carrito = await addProduct(contenedorCarritos, parseInt(id), product);
+        const carrito = await addProduct(contenedorCarritos, id, product);
         return carrito;
     } catch (e){
         console.log(e);
