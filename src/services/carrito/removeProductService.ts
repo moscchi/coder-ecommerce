@@ -3,7 +3,7 @@ import { Request } from "express";
 
 const removeProductService = async (req: Request) => {
     const { id, id_prod } = req.params;
-    const carrito = await removeProduct(contenedorCarritos, parseInt(id), parseInt(id_prod));
+    const carrito = await removeProduct(contenedorCarritos, id, id_prod);
     return carrito;
 }
 

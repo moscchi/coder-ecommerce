@@ -62,10 +62,11 @@ interface ContainerProducts {
     id: number,
   }) => {
     const { id } = obj;
-    await deleteById(contenedor, id);
     let objs = await fs.promises.readFile(contenedor.ruta, "utf-8");
     let objsParsed = JSON.parse(objs);
-    //Aca hay que parsearlo poruqe sino te queda como string y te rompe el codigo del getById
+    let byId = objsParsed.filter((obj: any) => obj.id === id);
+    if(byId.length == 0) return 'Producto no encontrado';
+    await deleteById(contenedor, id);
     objsParsed.push(obj);
     objsParsed.sort((a: any, b: any)=> {return a.id - b.id}); 
     try {

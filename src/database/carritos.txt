@@ -1,7 +1,26 @@
 [
   {
     "id": 1,
-    "list": []
+    "list": [
+      {
+        "title": "Mate",
+        "price": 1300,
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_815311-MLA40780211512_022020-O.webp",
+        "id": 1
+      },
+      {
+        "title": "Mate",
+        "price": 1300,
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_815311-MLA40780211512_022020-O.webp",
+        "id": 1
+      },
+      {
+        "title": "Termo",
+        "price": 3000,
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_934089-MLA42441068436_072020-O.webp",
+        "id": 3
+      }
+    ]
   },
   {
     "list": [],

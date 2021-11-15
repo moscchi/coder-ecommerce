@@ -1,4 +1,5 @@
 import fs from 'fs';
+import {contenedor, getById as getProduct} from './ContainerProducts';
 
 interface ContainerCarrito {
     ruta: string;
@@ -27,7 +28,7 @@ const delCarritoById = async (contenedorCarritos: ContainerCarrito, id: string) 
     try {
         const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
         const carritosParsed = JSON.parse(carritos)
-        const carritosFilter = carritosParsed.filter((i:any) => i.id != id);
+        const carritosFilter = carritosParsed.filter((i:any) => i.id !== parseInt(id));
         await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritosFilter, null, 2));
         return carritosParsed;
     } catch (e) {
@@ -48,32 +49,39 @@ const getById = async (contenedorCarritos: ContainerCarrito, id: number) => {
     }
 }
 
-const addProduct = async (contenedorCarritos: ContainerCarrito, id: string, producto: any) => {
-    const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
-    const carritosParsed = JSON.parse(carritos)
-    const carr = carritosParsed.filter((obj: any) => obj.id === id);
-    const list = [];
-    /* revisar este metodo */
-    carr.list.push(producto);
-    await delCarritoById(contenedorCarritos, id);
-    carritosParsed.push(carr);
-    carritosParsed.sort((a: any, b: any) => { return a.id - b.id});
+const addProduct = async (contenedorCarritos: ContainerCarrito, id: string, id_prod: any) => {
     try {
-        await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritos, null, 2));
-        return carritos;
+        const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
+        const carritosParsed = JSON.parse(carritos)
+        await delCarritoById(contenedorCarritos, id);
+        let carr = carritosParsed.filter((obj: any) => obj.id === parseInt(id));
+        const producto = await getProduct(contenedor, id_prod);
+        carr[0].list.push(producto[0]);
+        carritosParsed.sort((a: any, b: any) => { return a.id - b.id});
+        await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritosParsed, null, 2));
+        return carritosParsed;
     } catch (err) {
         throw new Error(`Error al cargar el producto: ${err}`);
     }
     
 }
 
-//Falta agregar el ultimo route
-const  removeProduct = async (contenedorCarritos:ContainerCarrito, id: number, id_prod: number) => {
+
+const  removeProduct = async (contenedorCarritos:ContainerCarrito, id: string, id_prod: string) => {
     const carritos = await fs.promises.readFile(contenedorCarritos.ruta, "utf-8");
-    const carritosParsed = JSON.parse(carritos)
-    const carr = carritosParsed.filter((obj: any) => obj.id === id);
-    const carrProducto = carr.filter((obj: any) => obj.id !== id_prod);
-    await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carrProducto, null, 2));
-    return carrProducto;
+    const carritosParsed = JSON.parse(carritos);
+    const carr = carritosParsed.filter((obj: any) => obj.id === parseInt(id));
+    console.log(carr);
+    const carrProducto = carr.list.filter((obj: any) => {
+    obj.id !== parseInt(id_prod);
+    console.log('quiero ver', obj)
+    } );
+    await delCarritoById(contenedorCarritos, id);
+    console.log('1',carrProducto);
+    
+    carritosParsed.push(carrProducto);
+    carritosParsed.sort((a: any, b: any) => { return a.id - b.id});
+    await fs.promises.writeFile(contenedorCarritos.ruta, JSON.stringify(carritosParsed, null, 2));
+    return carr;
 }
 export { addCarrito, delCarritoById, getById, addProduct, removeProduct, contenedorCarritos };

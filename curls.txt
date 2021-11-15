@@ -1,7 +1,16 @@
-Carritos:
-**********************************************
+Glosario:
+Los métodos están separados cada uno por el renglón de asteriscos y en el orden que aparece
+en la diapositiva de la consigna.
 
-curl --location --request POST 'http://localhost:8080/api/carrito' \
+Productos:
+
+**********************************************
+curl --location --request GET 'http://localhost:8080/api//productos/3' \
+--data-raw ''
+
+**********************************************
+CON PERMISO:
+curl --location --request POST 'http://localhost:8080/api//productos/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "title": "Pistolita",
@@ -9,6 +18,44 @@ curl --location --request POST 'http://localhost:8080/api/carrito' \
     "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
     "admin": 1
 }'
+SIN PERMISO: (esto se repite en todos para evitar redundancia solo lo pongo aca. Sólo hay que cambiar el raw body por cualquier cosa menos 1. )
+curl --location --request POST 'http://localhost:8080/api//productos/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title": "Pistolita",
+    "price": 2380,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "admin": 0
+}'
+**********************************************
+curl --location --request PUT 'http://localhost:8080/api/productos/125' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title": "asdasd",
+    "price": 2380,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "admin": 1
+}'
+
+**********************************************
+curl --location --request DELETE 'http://localhost:8080/api/productos/125' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title": "asdasd",
+    "price": 2380,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "admin": 1
+}'
+**********************************************
+
+
+Carritos:
+
+**********************************************
+
+curl --location --request POST 'http://localhost:8080/api/carrito' \
+--header 'Content-Type: application/json' \
+--data-raw ''
 
 **********************************************
 
@@ -19,6 +66,14 @@ curl --location --request DELETE 'http://localhost:8080/api/carrito/2' \
 
 curl --location --request GET 'http://localhost:8080/api/carrito/4/productos' \
 --data-raw ''
+
+**********************************************
+
+curl --location --request POST 'http://localhost:8080/api/carrito/1/productos' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id_prod": 3
+}'
 
 **********************************************
 
