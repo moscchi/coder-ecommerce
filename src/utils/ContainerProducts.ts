@@ -60,6 +60,9 @@ interface ContainerProducts {
     price: number,
     thumbnail: string,
     id: number,
+    timestamp: string,
+    description: string,
+    stock: number
   }) => {
     const { id } = obj;
     let objs = await fs.promises.readFile(contenedor.ruta, "utf-8");
@@ -67,11 +70,14 @@ interface ContainerProducts {
     let byId = objsParsed.filter((obj: any) => obj.id === id);
     if(byId.length == 0) return 'Producto no encontrado';
     await deleteById(contenedor, id);
-    objsParsed.push(obj);
-    objsParsed.sort((a: any, b: any)=> {return a.id - b.id}); 
+    let salsa = objsParsed.filter((obj: any) => obj.id !== id);
+    console.log('aver', salsa);
+    
+    salsa.push(obj);
+    salsa.sort((a: any, b: any)=> {return a.id - b.id}); 
     try {
-      await fs.promises.writeFile(contenedor.ruta, JSON.stringify(objsParsed, null, 2));
-      return objsParsed;
+      await fs.promises.writeFile(contenedor.ruta, JSON.stringify(salsa, null, 2));
+      return salsa;
     } catch (err) {
       throw new Error(`Error al guardar: ${err}`);
     }

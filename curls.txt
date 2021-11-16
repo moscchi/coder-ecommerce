@@ -10,30 +10,36 @@ curl --location --request GET 'http://localhost:8080/api//productos/3' \
 
 **********************************************
 CON PERMISO:
-curl --location --request POST 'http://localhost:8080/api//productos/' \
+curl --location --request POST 'http://localhost:8080/api/productos' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "title": "Pistolita",
     "price": 2380,
     "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "description": "Arma de juguete para que los nenes jueguen y se recaguen a palos",
+    "stock": 18,
     "admin": 1
 }'
 SIN PERMISO: (esto se repite en todos para evitar redundancia solo lo pongo aca. Sólo hay que cambiar el raw body por cualquier cosa menos 1. )
-curl --location --request POST 'http://localhost:8080/api//productos/' \
+curl --location --request POST 'http://localhost:8080/api/productos' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "title": "Pistolita",
     "price": 2380,
     "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "description": "Arma de juguete para que los nenes jueguen y se recaguen a palos",
+    "stock": 18,
     "admin": 0
 }'
 **********************************************
-curl --location --request PUT 'http://localhost:8080/api/productos/125' \
+curl --location --request PUT 'http://localhost:8080/api/productos/3' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "title": "asdasd",
-    "price": 2380,
-    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+    "title": "Aire",
+    "price": 15000,
+    "thumbnail": "",
+    "description": "Aire puro recolectado de las plantas del Himalaya",
+    "stock": 1000008,
     "admin": 1
 }'
 
@@ -77,3 +83,7 @@ curl --location --request POST 'http://localhost:8080/api/carrito/1/productos' \
 
 **********************************************
 
+curl --location --request DELETE 'http://localhost:8080/api/carrito/1/productos/3' \
+--header 'Content-Type: application/json' \
+--data-raw ''
+}'

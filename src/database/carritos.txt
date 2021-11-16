@@ -3,31 +3,64 @@
     "id": 1,
     "list": [
       {
-        "title": "Mate",
-        "price": 1300,
-        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_815311-MLA40780211512_022020-O.webp",
-        "id": 1
+        "title": "Aire",
+        "price": 15000,
+        "thumbnail": "",
+        "id": 3,
+        "timestamp": "16/11/2021 08:54:11",
+        "description": "Aire puro recolectado de las plantas del Himalaya",
+        "stock": 1000008
       },
       {
-        "title": "Mate",
-        "price": 1300,
-        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_815311-MLA40780211512_022020-O.webp",
-        "id": 1
-      },
-      {
-        "title": "Termo",
-        "price": 3000,
-        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_934089-MLA42441068436_072020-O.webp",
-        "id": 3
+        "title": "Arma ASESINA",
+        "price": 1400,
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+        "id": 2,
+        "timestamp": "16/11/2021 08:42:49",
+        "description": "Arma de juguete para que los nenes se maten",
+        "stock": 8
       }
     ]
   },
   {
-    "list": [],
+    "id": 2,
+    "list": []
+  },
+  {
+    "list": [
+      {
+        "title": "Arma ASESINA",
+        "price": 1400,
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_962338-MLA45479779094_042021-O.webp",
+        "id": 2,
+        "timestamp": "16/11/2021 08:42:49",
+        "description": "Arma de juguete para que los nenes se maten",
+        "stock": 8
+      },
+      {
+        "title": "Aire",
+        "price": 15000,
+        "thumbnail": "",
+        "id": 3,
+        "timestamp": "16/11/2021 08:54:11",
+        "description": "Aire puro recolectado de las plantas del Himalaya",
+        "stock": 1000008
+      }
+    ],
     "id": 3
   },
   {
-    "list": [],
+    "list": [
+      {
+        "title": "Aire",
+        "price": 15000,
+        "thumbnail": "",
+        "id": 3,
+        "timestamp": "16/11/2021 08:54:11",
+        "description": "Aire puro recolectado de las plantas del Himalaya",
+        "stock": 1000008
+      }
+    ],
     "id": 4
   }
 ]
