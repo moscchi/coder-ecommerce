@@ -12,4 +12,5 @@ server.get('/', (req: Request, res: Response) => res.send('Server del ecommerce 
 server.use("/", express.static(path.resolve() + "/src/public"));
 server.use("/api", routes);
 
+
 export default server;
