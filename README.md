@@ -4,6 +4,6 @@
 
 *Reporte de cambios:*
 
-` * Se modifico el almacenado de datos que se hacia a través de manejo de archivos (fileSystem) `
-` * asdas`
+* Se modifico el almacenado de datos que se hacia a través de manejo de archivos (fileSystem)
+* asdas
 
