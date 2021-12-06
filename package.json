@@ -1,6 +1,6 @@
 {
   "name": "ecomerce",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Este será un proyecto de ecomerce",
   "main": "index.js",
   "scripts": {
