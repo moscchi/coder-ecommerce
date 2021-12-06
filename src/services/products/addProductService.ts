@@ -1,26 +1,9 @@
 import { Request } from 'express';
 import { ProductosModel } from '../../models/products/products.models';
-let id = 0;
-/* const addProductService = async (req: Request) => {
-  const { title, price, thumbnail, admin, description, stock } = req.body;
-  if(admin == 1){
-    const hoy = new Date();
-    const obj = {
-      title,
-      price,
-      thumbnail,
-      id: 0,
-      timestamp: hoy.toLocaleString(),
-      description,
-      stock
-    };
-    const newProduct = await save(contenedor, obj);
-    return newProduct;
-  } else {
-    return "Acceso denegado.";
-  }
-}; */
+
 const addProductService = async (req: Request) => {
+  const producto = await ProductosModel.find().sort({id_car:-1}).limit(1);
+  let { id_prod } = producto[0];
   const { title, price, thumbnail, admin, description, stock } = req.body;
   if(admin == 1){
     const hoy = new Date();
@@ -28,7 +11,7 @@ const addProductService = async (req: Request) => {
       title,
       price,
       thumbnail,
-      id_prod: ++id,
+      id_prod: ++id_prod,
       timestamp: hoy.toLocaleString(),
       description,
       stock
