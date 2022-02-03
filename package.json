@@ -2,7 +2,7 @@
   "name": "ecomerce",
   "version": "0.2.0",
   "description": "Este será un proyecto de ecomerce",
-  "main": "index.ts",
+  "main": "index.js",
   "type": "module"
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
