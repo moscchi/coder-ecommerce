@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.ts",
-    "start": "node ./src/index.js"
+    "start": "nodemon ./src/index.ts",
+    "dev": "node ./src/index.js"
   },
   "author": "Sebastián Moschini",
   "license": "ISC",
