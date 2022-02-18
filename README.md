@@ -1,6 +1,13 @@
 # Proyecto Final E-commerce
 
-*Este repo contiene el proyecto final del curso de Back-end de Coder-House.*
+## Segunda entrega 
 
-`Cada rama pertenece a una entrega. En el main estará el proyecto final.`
+*Reporte de cambios:*
+
+* Se eliminó el almacenado de datos que se hacia a través de manejo de archivos (fileSystem)
+* Se agregó el almacenado de datos a través de mongoose con a través de una Mongo Cloud
+* Se agregó un middleware para el manjeo de rutas inválidas.
+* Agregado el readme.
+* Actualizada la version a 0.2.0 en el package-json.
+
 

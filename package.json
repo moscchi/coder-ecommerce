@@ -1,11 +1,12 @@
 {
   "name": "ecomerce",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Este será un proyecto de ecomerce",
   "main": "index.js",
   "scripts": {
     "test": "npx jest",
-    "dev": "nodemon ./src/index.ts"
+    "dev": "nodemon ./src/index.ts",
+    "start": "node ./src/index.js"
   },
   "author": "Sebastián Moschini",
   "license": "ISC",
