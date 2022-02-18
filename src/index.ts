@@ -1,6 +1,7 @@
 require('dotenv').config();
 import server from "./server";
-import './configuration/db'
+import './configuration/db';
+import './auth/index';
 
 const PORT = process.env.PORT || 8080;
 

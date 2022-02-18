@@ -1,4 +1,5 @@
 import express from "express";
+import passport from 'passport';
 import {
   getProductById,
   addProduct,
@@ -13,6 +14,7 @@ import {
   addProductCarrito,
   delProdCarrito
 } from '../controller/carrito/index'
+import { getRegister, postRegister, getFailregister, getLogin, postLogin, getFaillogin, getLogout } from '../controller/auth';
 
 const routes = express.Router();
 
@@ -30,5 +32,21 @@ routes.get("/carrito/:id/productos", listCarrito);
 routes.post("/carrito/:id/productos", addProductCarrito);
 routes.delete("/carrito/:id/productos/:id_prod", delProdCarrito);
 
+/*
+*   Rutas de auth
+*/
+
+// REGISTRO
+routes.get("/registro", getRegister);
+routes.post("/registro", passport.authenticate('signup', { failureRedirect: '/failregister'}), postRegister);
+routes.get("/failregister", getFailregister);
+
+// LOGIN
+routes.get('/login', getLogin);
+routes.post('/login', passport.authenticate('signin', { failureRedirect: '/faillogin'}), postLogin);
+routes.get('/faillogin', getFaillogin);
+
+// LOGOUT
+routes.get('/logout', getLogout);
 
 export default routes;

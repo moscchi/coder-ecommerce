@@ -1,0 +1,3 @@
+Termine en el archivo controller auth.
+
+Ya estaria usuariosmodel y auth service (en carpeta auth). Quedaria saber si tengo que hacerle una vista o no a este back.
